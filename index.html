@@ -26,42 +26,28 @@
 
   .setup-card {
     background: #fff;
-    border: 4px solid #4caf50;
+    border: 4px solid #26a69a;
     border-radius: 26px;
-    padding: 24px;
-    max-width: 600px;
+    padding: 30px 24px;
+    max-width: 500px;
     width: 100%;
     text-align: center;
     box-shadow: 0 10px 30px rgba(0,0,0,.12);
   }
 
-  .setup-card h2 { color: #2e7d32; margin-top: 0; }
+  .setup-card h2 { color: #00695c; margin-top: 0; }
 
-  textarea {
+  input {
     width: 100%;
-    min-height: 170px;
-    border: 3px solid #ffb703;
+    border: 3px solid #26a69a;
     border-radius: 18px;
-    padding: 12px;
-    font-size: 16px;
+    padding: 14px;
+    font-size: 18px;
     font-family: inherit;
     outline: none;
-    resize: vertical;
+    margin-bottom: 16px;
+    text-align: center;
   }
-
-  .hint { color: #7a5b8f; font-size: 14px; margin: 10px 0; }
-
-  .checkbox-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin: 12px 0 16px;
-    font-weight: bold;
-    color: #555;
-  }
-
-  .checkbox-row input { width: 20px; height: 20px; accent-color: #4caf50; }
 
   header { text-align: center; margin-bottom: 12px; }
 
@@ -78,6 +64,72 @@
     margin-top: 4px;
   }
 
+  .groups-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    background: #ffffffcc;
+    border-radius: 20px;
+    padding: 10px;
+    margin-bottom: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,.08);
+  }
+
+  .group-chip {
+    position: relative;
+    background: #26a69a;
+    border: 3px solid #26a69a;
+    color: #fff;
+    border-radius: 16px;
+    padding: 8px 14px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    transition: transform .15s;
+  }
+
+  .group-chip:active { transform: scale(.95); }
+
+  .group-chip.active {
+    background: #ffffff;
+    border-color: #26a69a;
+    color: #00695c;
+  }
+
+  .group-chip.reorder-mode {
+    border-color: #ff7043;
+    background: #fff3e0;
+    color: #e65100;
+    animation: movePulse .8s infinite;
+  }
+
+  .group-chip .chip-actions {
+    position: absolute;
+    top: -16px;
+    left: -8px;
+    display: flex;
+    gap: 4px;
+    z-index: 10;
+  }
+
+  .chip-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #ffb703;
+    color: #fff;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,.2);
+  }
+
+  .chip-btn.delete { background: #ef5350; }
+
   .top-bar {
     display: flex;
     flex-wrap: wrap;
@@ -87,17 +139,7 @@
     margin-bottom: 12px;
   }
 
-  input, textarea {
-    border: 3px solid #ffb703;
-    border-radius: 18px;
-    padding: 10px 14px;
-    font-size: 16px;
-    outline: none;
-    background: #fff;
-    font-family: inherit;
-  }
-
-  input { min-width: 180px; }
+  .top-bar input { width: auto; min-width: 180px; margin: 0; }
 
   button {
     border: none;
@@ -109,25 +151,27 @@
     color: #fff;
     transition: transform .15s;
     box-shadow: 0 4px 0 rgba(0,0,0,.15);
+    touch-action: manipulation;
   }
 
   button:active { transform: scale(.95); }
 
   .add-btn { background: #4caf50; }
   .new-day-btn { background: #ff7043; }
-  .clear-btn { background: #90a4ae; }
+  .reorder-names-btn { background: #7e57c2; }
   .reimport-btn { background: #90a4ae; }
   .add-column-btn { background: #3f51b5; }
+  .add-group-btn { background: #26a69a; }
   .delete-student-btn { background: #e91e63; }
   .delete-student-btn.active { background: #b71c1c; animation: pulse 1s infinite; }
   .return-btn { background: #7e57c2; display: none; }
   .return-btn.show { display: block; animation: popIn .25s; }
   .cancel-btn { background: #78909c; }
-  .start-btn { background: #4caf50; font-size: 18px; padding: 12px 24px; }
+  .start-btn { background: #26a69a; font-size: 18px; padding: 12px 24px; }
 
   .names-panel {
     background: #ffffffcc;
-    border: 4px solid #4caf50;
+    border: 4px solid #26a69a;
     border-radius: 22px;
     padding: 12px;
     margin-bottom: 14px;
@@ -136,7 +180,7 @@
 
   .names-title {
     font-weight: bold;
-    color: #2e7d32;
+    color: #00695c;
     margin-bottom: 8px;
     text-align: center;
     font-size: clamp(16px, 3.5vw, 22px);
@@ -247,7 +291,7 @@
     font-weight: bold;
     font-size: 16px;
     color: #fff;
-    background: linear-gradient(90deg, #ff5fa2, #ff9800);
+    background: linear-gradient(90deg, #26a69a, #4db6ac);
     border-radius: 14px;
     padding: 6px;
     cursor: pointer;
@@ -256,7 +300,6 @@
 
   .column-title:active { transform: scale(.95); }
 
-  /* عند اختيار أسماء أو وضع نقل: العمود يومض بالبرتقالي */
   .column-title.active-mode {
     background: linear-gradient(90deg, #ff7043, #ff9800);
     animation: pulse 1s infinite;
@@ -299,11 +342,6 @@
 
   .slot.selectable { cursor: pointer; }
 
-  .slot.selectable:hover {
-    border-color: #7e57c2;
-    background: #ede7f6;
-  }
-
   .slot.temp-slot {
     border: 3px solid #7e57c2;
     background: #ede7f6;
@@ -325,9 +363,9 @@
   }
 
   .slot.filled {
-    background: #e8f5e9;
-    border: 3px solid #4caf50;
-    color: #1b5e20;
+    background: #e0f2f1;
+    border: 3px solid #26a69a;
+    color: #00695c;
     animation: popIn .35s;
   }
 
@@ -363,7 +401,7 @@
     text-align: center;
     min-height: 26px;
     font-weight: bold;
-    color: #6a4c93;
+    color: #00695c;
     margin-top: 10px;
   }
 
@@ -371,11 +409,6 @@
     0% { transform: scale(.4); opacity: 0; }
     70% { transform: scale(1.1); }
     100% { transform: scale(1); opacity: 1; }
-  }
-
-  @keyframes bounce {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
   }
 
   @keyframes starSpin {
@@ -425,17 +458,9 @@
 
 <div class="setup-screen" id="setupScreen">
   <div class="setup-card">
-    <h2>⭐ أدخل أسماء الأبطال ⭐</h2>
-    <textarea id="setupTextarea" placeholder="الصق الأسماء هنا، كل اسم في سطر منفصل&#10;أو افصل بينها بفاصلة"></textarea>
-
-    <div class="checkbox-row">
-      <input type="checkbox" id="shortNamesCheckbox" checked>
-      <label for="shortNamesCheckbox">تقصير الاسم</label>
-    </div>
-
-    <div class="hint">يظهر الاسم الأول فقط، وإذا تكرر يُضاف الثاني، وهكذا.</div>
-
-    <button class="start-btn" onclick="startFromSetup()">✅ ابدأ اللوحة</button>
+    <h2>⭐ أدخل اسم الفصل ⭐</h2>
+    <input type="text" id="classNameInput" placeholder="مثال: الصف الأول / فصل ٢">
+    <button type="button" id="startBtn" class="start-btn">✅ ابدأ</button>
   </div>
 </div>
 
@@ -445,33 +470,33 @@
     <div class="subtitle">اختر أسماء بالترتيب ثم اضغط رقم العمود، أو اضغط مطولًا على اسم لنقله</div>
   </header>
 
+  <div class="groups-bar">
+    <div class="names-list" id="groupsList"></div>
+    <button class="add-group-btn" onclick="createNewClass()">➕ فصل جديد</button>
+  </div>
+
   <div class="top-bar">
-    <input id="nameInput" placeholder="اكتب اسم بطل جديد هنا">
+    <input id="nameInput" placeholder="اكتب اسم الطالب هنا">
     <button class="add-btn" onclick="addName()">➕ إضافة اسم</button>
     <button class="add-column-btn" onclick="addColumn()">🏛️ إضافة عمود</button>
     <button class="new-day-btn" onclick="newDay()">🌅 بداية يوم جديد</button>
     <button id="returnBtn" class="return-btn" onclick="returnMovingToTop()">⬆️ إرجاع إلى الأعلى</button>
     <button id="deleteStudentBtn" class="delete-student-btn" onclick="toggleDeleteStudentMode()">🗑️ حذف طالب</button>
-    <button class="clear-btn" onclick="clearAll()">🧹 مسح الكل</button>
-    <button class="reimport-btn" onclick="toggleImportBox()">📋 إعادة إدخال الأسماء</button>
+    <button class="reorder-names-btn" onclick="resetAllNames()">🔄 إعادة ترتيب الأسماء</button>
+    <button class="reimport-btn" onclick="toggleImportBox()">📋 إعادة إدخال الأسماء دفعة واحدة</button>
   </div>
 
   <div class="import-box" id="importBox">
     <textarea id="importTextarea" placeholder="الصق الأسماء هنا، كل اسم في سطر منفصل&#10;أو افصل بينها بفاصلة"></textarea>
-
-    <div class="checkbox-row">
-      <input type="checkbox" id="importShortNamesCheckbox" checked>
-      <label for="importShortNamesCheckbox">تقصير الاسم</label>
-    </div>
-
-    <div style="display:flex; gap:8px; justify-content:center;">
-      <button class="reimport-btn" onclick="importNames()">✅ حفظ الأسماء</button>
+    <div style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center;">
+      <button class="reimport-btn" onclick="importNames(false)">🔄 استبدال الأسماء</button>
+      <button class="add-btn" onclick="importNames(true)">➕ إضافة دفعة واحدة</button>
       <button class="cancel-btn" onclick="toggleImportBox()">إلغاء</button>
     </div>
   </div>
 
   <div class="names-panel">
-    <div class="names-title">⭐ أسماء الأبطال ⭐</div>
+    <div class="names-title" id="groupTitle">⭐ أسماء الأبطال ⭐</div>
     <div class="names-list" id="namesList"></div>
   </div>
 
@@ -483,22 +508,21 @@
 </div>
 
 <script>
-const STORAGE_KEY = "kids_heroes_board_v19";
+const STORAGE_KEY = "kids_heroes_classes_v7";
 
 let state = {
-  setupDone: false,
-  names: [],
-  columns: [],
-  extraSlots: 0,
-  selectedNameIds: [],
-  movingNameId: null,
-  deleteStudentMode: false
+  classes: [],
+  currentClassId: null,
+  reorderClassId: null,
+  classActionsId: null
 };
 
 const setupScreen = document.getElementById("setupScreen");
 const mainScreen = document.getElementById("mainScreen");
-const setupTextarea = document.getElementById("setupTextarea");
-const shortNamesCheckbox = document.getElementById("shortNamesCheckbox");
+const classNameInput = document.getElementById("classNameInput");
+const startBtn = document.getElementById("startBtn");
+const groupsList = document.getElementById("groupsList");
+const groupTitle = document.getElementById("groupTitle");
 const board = document.getElementById("board");
 const namesList = document.getElementById("namesList");
 const message = document.getElementById("message");
@@ -507,7 +531,6 @@ const deleteStudentBtn = document.getElementById("deleteStudentBtn");
 const returnBtn = document.getElementById("returnBtn");
 const importBox = document.getElementById("importBox");
 const importTextarea = document.getElementById("importTextarea");
-const importShortNamesCheckbox = document.getElementById("importShortNamesCheckbox");
 
 function save() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
@@ -520,7 +543,7 @@ function load() {
     try {
       state = JSON.parse(saved);
     } catch (e) {
-      state = { setupDone: false, names: [], columns: [], extraSlots: 0, selectedNameIds: [], movingNameId: null, deleteStudentMode: false };
+      state = { classes: [], currentClassId: null, reorderClassId: null, classActionsId: null };
     }
   }
 
@@ -528,10 +551,17 @@ function load() {
   render();
 }
 
+function getCurrentClass() {
+  return state.classes.find(c => c.id === state.currentClassId) || null;
+}
+
 function updateScreens() {
-  if (state.setupDone) {
+  const cls = getCurrentClass();
+
+  if (cls) {
     setupScreen.style.display = "none";
     mainScreen.style.display = "block";
+    groupTitle.textContent = "⭐ أبطال " + cls.name + " ⭐";
   } else {
     setupScreen.style.display = "flex";
     mainScreen.style.display = "none";
@@ -542,161 +572,293 @@ function parseNames(raw) {
   return raw.split(/\n|،|,/).map(n => n.trim()).filter(n => n.length > 0);
 }
 
-function shortenNames(namesArray) {
-  const result = [];
-  const used = {};
-
-  namesArray.forEach(fullName => {
-    const parts = fullName.split(/\s+/).filter(p => p.length > 0);
-    if (parts.length === 0) return;
-
-    let count = 1;
-    let candidate = parts.slice(0, count).join(" ");
-
-    while (used[candidate] && count < parts.length) {
-      count++;
-      candidate = parts.slice(0, count).join(" ");
-    }
-
-    used[candidate] = true;
-    result.push(candidate);
-  });
-
-  return result;
-}
-
-function startFromSetup() {
-  let namesArray = parseNames(setupTextarea.value);
-
-  if (namesArray.length === 0) {
-    alert("الصق أو اكتب الأسماء أولًا 🙂");
-    return;
-  }
-
-  if (shortNamesCheckbox.checked) {
-    namesArray = shortenNames(namesArray);
-  }
-
-  state.names = namesArray.map((text, i) => ({
-    id: "name_" + Date.now() + "_" + i,
-    text,
-    hasStar: true
-  }));
-
-  state.columns = [];
-  for (let c = 0; c < 6; c++) state.columns.push(createColumn());
-
-  state.extraSlots = 0;
-  state.setupDone = true;
-  state.selectedNameIds = [];
-  state.movingNameId = null;
-
-  setupTextarea.value = "";
-  save();
-  updateScreens();
-  render();
-  showMessage("تم تجهيز اللوحة! اختر الأسماء بالترتيب ثم اضغط على رقم العمود.");
-}
-
 function createColumn() {
   return [null, null];
 }
 
-function getPermanentSlotCount() {
-  return 2 + state.extraSlots;
+function buildClass(name) {
+  const columns = [];
+  for (let c = 0; c < 6; c++) columns.push(createColumn());
+
+  return {
+    id: "class_" + Date.now() + "_" + Math.random().toString(36).slice(2, 7),
+    name,
+    names: [],
+    columns,
+    extraSlots: 0,
+    selectedNameIds: [],
+    movingNameId: null,
+    deleteStudentMode: false
+  };
 }
 
-function ensureColumns() {
-  const count = getPermanentSlotCount();
-  state.columns.forEach(column => {
-    while (column.length < count) column.push(null);
-  });
+function startFromSetup() {
+  const className = classNameInput.value.trim();
+
+  if (!className) {
+    alert("اكتب اسم الفصل أولًا 🙂");
+    return;
+  }
+
+  const cls = buildClass(className);
+  state.classes.push(cls);
+  state.currentClassId = cls.id;
+
+  classNameInput.value = "";
+  save();
+  updateScreens();
+  render();
+
+  showMessage("تم إنشاء فصل: " + className + " 🎉 أضف أسماء الطلاب الآن.");
+}
+
+function createNewClass() {
+  const className = prompt("اكتب اسم الفصل الجديد:");
+
+  if (!className || !className.trim()) {
+    showMessage("تم إلغاء إنشاء الفصل.");
+    return;
+  }
+
+  const cls = buildClass(className.trim());
+  state.classes.push(cls);
+  state.currentClassId = cls.id;
+
+  save();
+  updateScreens();
+  render();
+  showMessage("تم إنشاء فصل: " + cls.name + " 🎉");
+}
+
+function switchClass(classId) {
+  if (state.reorderClassId && state.reorderClassId !== classId) {
+    const fromIndex = state.classes.findIndex(c => c.id === state.reorderClassId);
+    const toIndex = state.classes.findIndex(c => c.id === classId);
+
+    const temp = state.classes[fromIndex];
+    state.classes[fromIndex] = state.classes[toIndex];
+    state.classes[toIndex] = temp;
+
+    state.reorderClassId = null;
+    state.classActionsId = null;
+    save();
+    render();
+    showMessage("تم تبديل مكان الفصلين 🔄");
+    return;
+  }
+
+  if (state.reorderClassId === classId) {
+    state.reorderClassId = null;
+    state.classActionsId = null;
+    save();
+    render();
+    showMessage("تم إلغاء إعادة الترتيب.");
+    return;
+  }
+
+  state.currentClassId = classId;
+  state.classActionsId = null;
+  save();
+  updateScreens();
+  render();
+  showMessage("أنت الآن في فصل: " + getCurrentClass().name);
+}
+
+function startClassActions(classId) {
+  state.classActionsId = classId;
+  save();
+  render();
+  showMessage("اختر ✏️ تعديل، ⇄ تبديل، أو 🗑️ حذف.");
+}
+
+function renameClass(classId, event) {
+  event.stopPropagation();
+
+  const cls = state.classes.find(c => c.id === classId);
+  if (!cls) return;
+
+  const newName = prompt("اكتب الاسم الجديد للفصل:", cls.name);
+
+  if (newName && newName.trim()) {
+    cls.name = newName.trim();
+    state.classActionsId = null;
+    save();
+    render();
+    showMessage("تم تعديل اسم الفصل ✏️");
+  }
+}
+
+function startReorder(classId, event) {
+  event.stopPropagation();
+
+  state.reorderClassId = classId;
+  state.classActionsId = null;
+  save();
+  render();
+  showMessage("👆 اختر فصلًا آخر لتبديل مكانه.");
+}
+
+function deleteClass(classId, event) {
+  event.stopPropagation();
+
+  const cls = state.classes.find(c => c.id === classId);
+  if (!cls) return;
+
+  if (state.classes.length <= 1) {
+    showMessage("لا يمكن حذف الفصل الأخير 😅");
+    return;
+  }
+
+  if (!confirm("هل تريد حذف فصل: " + cls.name + " نهائيًا؟")) {
+    state.classActionsId = null;
+    save();
+    render();
+    return;
+  }
+
+  state.classes = state.classes.filter(c => c.id !== classId);
+
+  if (state.currentClassId === classId) {
+    state.currentClassId = state.classes[0].id;
+  }
+
+  state.classActionsId = null;
+  save();
+  updateScreens();
+  render();
+  showMessage("تم حذف الفصل.");
 }
 
 function showMessage(text) {
   message.textContent = text;
 }
 
+function resetAllNames() {
+  const cls = getCurrentClass();
+  if (!cls) return;
+
+  if (cls.names.length === 0) {
+    showMessage("لا توجد أسماء لإعادتها.");
+    return;
+  }
+
+  if (confirm("هل تريد إعادة ترتيب الأسماء؟ سيتم إرجاع جميع الأسماء إلى الأعلى.")) {
+    cls.columns.forEach(column => {
+      for (let r = 0; r < column.length; r++) column[r] = null;
+    });
+
+    cls.selectedNameIds = [];
+    cls.movingNameId = null;
+
+    showMessage("تم إرجاع جميع الأسماء إلى الأعلى 🔄 يمكنك توزيعها من جديد.");
+    save();
+    render();
+  } else {
+    showMessage("تم إلغاء إعادة الترتيب.");
+  }
+}
+
 function addName() {
+  const cls = getCurrentClass();
+  if (!cls) return;
+
   const text = nameInput.value.trim();
   if (!text) {
-    showMessage("اكتب اسمًا أولًا 🙂");
+    showMessage("اكتب اسم الطالب أولًا 🙂");
     return;
   }
 
   const id = Date.now() + "_" + Math.random().toString(36).slice(2, 7);
-  state.names.push({ id, text, hasStar: true });
+  cls.names.push({ id, text, hasStar: true });
   nameInput.value = "";
-  showMessage("تمت إضافة: " + text + " 🎉");
+
+  showMessage("تمت إضافة: " + getDisplayName(cls, id) + " 🎉");
   save();
   render();
 }
 
 function toggleImportBox() {
   if (!importBox.classList.contains("show")) {
-    if (!confirm("هل تريد إعادة إدخال الأسماء؟ سيتم استبدال الأسماء الحالية وإرجاع الجميع إلى الأعلى.")) return;
+    if (!confirm("هل تريد إعادة إدخال الأسماء دفعة واحدة؟ يمكنك الاستبدال أو الإضافة.")) return;
   }
   importBox.classList.toggle("show");
 }
 
-function importNames() {
-  let namesArray = parseNames(importTextarea.value);
+function importNames(appendMode) {
+  const cls = getCurrentClass();
+  if (!cls) return;
+
+  const namesArray = parseNames(importTextarea.value);
 
   if (namesArray.length === 0) {
     showMessage("الصق الأسماء أولًا 🙂");
     return;
   }
 
-  if (importShortNamesCheckbox.checked) {
-    namesArray = shortenNames(namesArray);
+  if (appendMode) {
+    if (!confirm("سيتم إضافة " + namesArray.length + " اسمًا إلى الأسماء الحالية. هل تريد المتابعة؟")) return;
+
+    namesArray.forEach(text => {
+      const id = Date.now() + "_" + Math.random().toString(36).slice(2, 7);
+      cls.names.push({ id, text, hasStar: true });
+    });
+
+    showMessage("تمت إضافة " + namesArray.length + " اسمًا دفعة واحدة ➕");
+  } else {
+    if (!confirm("سيتم استبدال أسماء فصل: " + cls.name + " بـ " + namesArray.length + " اسمًا. هل تريد المتابعة؟")) return;
+
+    cls.names = namesArray.map((text, i) => ({
+      id: "imported_" + Date.now() + "_" + i,
+      text,
+      hasStar: true
+    }));
+
+    cls.columns = [];
+    for (let c = 0; c < 6; c++) cls.columns.push(createColumn());
+
+    cls.extraSlots = 0;
+    cls.selectedNameIds = [];
+    cls.movingNameId = null;
+
+    showMessage("تم استبدال الأسماء بنجاح 🔄");
   }
 
-  if (!confirm("سيتم استبدال كل الأسماء الحالية بـ " + namesArray.length + " اسمًا. هل تريد المتابعة؟")) return;
-
-  state.names = namesArray.map((text, i) => ({
-    id: "imported_" + Date.now() + "_" + i,
-    text,
-    hasStar: true
-  }));
-
-  state.columns = [];
-  for (let c = 0; c < 6; c++) state.columns.push(createColumn());
-
-  state.extraSlots = 0;
-  state.selectedNameIds = [];
-  state.movingNameId = null;
   importTextarea.value = "";
   importBox.classList.remove("show");
-
-  showMessage("تم إدخال " + namesArray.length + " اسمًا.");
   save();
   render();
 }
 
 function toggleDeleteStudentMode() {
-  state.deleteStudentMode = !state.deleteStudentMode;
+  const cls = getCurrentClass();
+  if (!cls) return;
+
+  cls.deleteStudentMode = !cls.deleteStudentMode;
   save();
   render();
-  showMessage(state.deleteStudentMode ? "وضع حذف الطلاب مفعّل." : "تم إيقاف وضع حذف الطلاب.");
+  showMessage(cls.deleteStudentMode ? "وضع حذف الطلاب مفعّل." : "تم إيقاف وضع حذف الطلاب.");
 }
 
 function deleteName(nameId, event) {
   event.stopPropagation();
 
-  const name = state.names.find(n => n.id === nameId);
+  const cls = getCurrentClass();
+  if (!cls) return;
+
+  const name = cls.names.find(n => n.id === nameId);
   if (!name) return;
 
   if (!confirm("هل تريد حذف " + name.text + "؟")) return;
 
-  state.columns.forEach(column => {
+  cls.columns.forEach(column => {
     for (let r = 0; r < column.length; r++) {
       if (column[r] && column[r].nameId === nameId) column[r] = null;
     }
   });
 
-  state.names = state.names.filter(n => n.id !== nameId);
-  state.selectedNameIds = state.selectedNameIds.filter(id => id !== nameId);
-  if (state.movingNameId === nameId) state.movingNameId = null;
+  cls.names = cls.names.filter(n => n.id !== nameId);
+  cls.selectedNameIds = cls.selectedNameIds.filter(id => id !== nameId);
+  if (cls.movingNameId === nameId) cls.movingNameId = null;
 
   showMessage("تم حذف " + name.text + " 🧹");
   save();
@@ -704,55 +866,67 @@ function deleteName(nameId, event) {
 }
 
 function addColumn() {
-  const count = getPermanentSlotCount();
+  const cls = getCurrentClass();
+  if (!cls) return;
+
+  const count = 2 + cls.extraSlots;
   const newColumn = [];
   for (let r = 0; r < count; r++) newColumn.push(null);
 
-  state.columns.push(newColumn);
+  cls.columns.push(newColumn);
   showMessage("تمت إضافة عمود جديد 🏛️");
   save();
   render();
 }
 
 function deleteLastColumn() {
-  if (state.columns.length <= 1) {
+  const cls = getCurrentClass();
+  if (!cls) return;
+
+  if (cls.columns.length <= 1) {
     showMessage("لا يمكن حذف آخر عمود 😅");
     return;
   }
 
   if (!confirm("هل تريد حذف العمود الأخير؟")) return;
 
-  state.columns.pop();
+  cls.columns.pop();
   showMessage("تم حذف العمود الأخير 🧹");
   save();
   render();
 }
 
 function toggleSelectName(id) {
-  const index = state.selectedNameIds.indexOf(id);
+  const cls = getCurrentClass();
+  if (!cls) return;
+
+  const index = cls.selectedNameIds.indexOf(id);
 
   if (index !== -1) {
-    state.selectedNameIds.splice(index, 1);
+    cls.selectedNameIds.splice(index, 1);
   } else {
-    state.selectedNameIds.push(id);
+    cls.selectedNameIds.push(id);
   }
 
   save();
   render();
 
-  if (state.selectedNameIds.length === 0) {
+  if (cls.selectedNameIds.length === 0) {
     showMessage("اضغط على الأسماء بالترتيب، ثم اضغط على رقم العمود.");
-  } else if (state.selectedNameIds.length === 1) {
-    showMessage("اخترت: " + getNameText(id) + " 👆 اضغط على خانة أو رقم عمود.");
+  } else if (cls.selectedNameIds.length === 1) {
+    showMessage("اخترت: " + getDisplayName(cls, id) + " 👆 اضغط على خانة أو رقم عمود.");
   } else {
-    showMessage("اخترت " + state.selectedNameIds.length + " أسماء بالترتيب. اضغط على رقم العمود.");
+    showMessage("اخترت " + cls.selectedNameIds.length + " أسماء بالترتيب. اضغط على رقم العمود.");
   }
 }
 
 function findNameLocation(nameId) {
-  for (let c = 0; c < state.columns.length; c++) {
-    for (let r = 0; r < state.columns[c].length; r++) {
-      const slot = state.columns[c][r];
+  const cls = getCurrentClass();
+  if (!cls) return null;
+
+  for (let c = 0; c < cls.columns.length; c++) {
+    for (let r = 0; r < cls.columns[c].length; r++) {
+      const slot = cls.columns[c][r];
       if (slot && slot.nameId === nameId) return { c, r };
     }
   }
@@ -760,66 +934,81 @@ function findNameLocation(nameId) {
 }
 
 function placeSelectedNamesInColumn(columnIndex) {
-  if (state.movingNameId) {
+  const cls = getCurrentClass();
+  if (!cls) return;
+
+  if (cls.movingNameId) {
     moveMovingToColumn(columnIndex);
     return;
   }
 
-  if (state.selectedNameIds.length === 0) {
+  if (cls.selectedNameIds.length === 0) {
     showMessage("اختر اسمًا أو أكثر من الأعلى أولًا 👆");
     return;
   }
 
-  const column = state.columns[columnIndex];
+  const column = cls.columns[columnIndex];
   let placed = 0;
 
-  state.selectedNameIds.forEach(nameId => {
+  cls.selectedNameIds.forEach(nameId => {
     const oldLocation = findNameLocation(nameId);
-    if (oldLocation) state.columns[oldLocation.c][oldLocation.r] = null;
+    if (oldLocation) cls.columns[oldLocation.c][oldLocation.r] = null;
 
     let emptyIndex = column.findIndex(slot => slot === null);
 
     if (emptyIndex === -1) {
-      state.extraSlots++;
-      ensureColumns();
-      emptyIndex = state.columns[columnIndex].findIndex(slot => slot === null);
+      cls.extraSlots++;
+      const count = 2 + cls.extraSlots;
+
+      cls.columns.forEach(col => {
+        while (col.length < count) col.push(null);
+      });
+
+      emptyIndex = cls.columns[columnIndex].findIndex(slot => slot === null);
     }
 
     if (emptyIndex !== -1) {
-      state.columns[columnIndex][emptyIndex] = { nameId, struck: false };
+      cls.columns[columnIndex][emptyIndex] = { nameId, struck: false };
       placed++;
     }
   });
 
-  state.selectedNameIds = [];
+  cls.selectedNameIds = [];
   showMessage("تم وضع " + placed + " أسماء في العمود " + (columnIndex + 1) + " ⭐");
   save();
   render();
 }
 
 function placeSingleSelected(columnIndex, rowIndex, isTempSlot) {
-  const nameId = state.selectedNameIds[0];
-  const name = state.names.find(n => n.id === nameId);
+  const cls = getCurrentClass();
+  if (!cls) return;
+
+  const nameId = cls.selectedNameIds[0];
+  const name = cls.names.find(n => n.id === nameId);
 
   const oldLocation = findNameLocation(nameId);
 
   if (oldLocation && oldLocation.c === columnIndex && oldLocation.r === rowIndex) {
-    state.selectedNameIds = [];
+    cls.selectedNameIds = [];
     showMessage("تم إلغاء اختيار " + name.text);
     save();
     render();
     return;
   }
 
-  if (oldLocation) state.columns[oldLocation.c][oldLocation.r] = null;
+  if (oldLocation) cls.columns[oldLocation.c][oldLocation.r] = null;
 
   if (isTempSlot) {
-    state.extraSlots++;
-    ensureColumns();
+    cls.extraSlots++;
+    const count = 2 + cls.extraSlots;
+
+    cls.columns.forEach(col => {
+      while (col.length < count) col.push(null);
+    });
   }
 
-  state.columns[columnIndex][rowIndex] = { nameId, struck: false };
-  state.selectedNameIds = [];
+  cls.columns[columnIndex][rowIndex] = { nameId, struck: false };
+  cls.selectedNameIds = [];
 
   showMessage("تم وضع " + name.text + " في العمود " + (columnIndex + 1) + " ⭐");
   save();
@@ -827,34 +1016,40 @@ function placeSingleSelected(columnIndex, rowIndex, isTempSlot) {
 }
 
 function startMoving(nameId) {
-  state.movingNameId = nameId;
+  const cls = getCurrentClass();
+  if (!cls) return;
+
+  cls.movingNameId = nameId;
   save();
   render();
 
-  const name = state.names.find(n => n.id === nameId);
-  showMessage("👆 " + name.text + " جاهز للنقل. اضغط على خانة أو رقم عمود.");
+  showMessage("👆 " + getDisplayName(cls, nameId) + " جاهز للنقل. اضغط على خانة أو رقم عمود.");
 }
 
 function returnMovingToTop() {
-  if (!state.movingNameId) return;
+  const cls = getCurrentClass();
+  if (!cls || !cls.movingNameId) return;
 
-  const name = state.names.find(n => n.id === state.movingNameId);
+  const name = cls.names.find(n => n.id === cls.movingNameId);
 
-  state.columns.forEach(column => {
+  cls.columns.forEach(column => {
     for (let r = 0; r < column.length; r++) {
-      if (column[r] && column[r].nameId === state.movingNameId) column[r] = null;
+      if (column[r] && column[r].nameId === cls.movingNameId) column[r] = null;
     }
   });
 
-  state.movingNameId = null;
+  cls.movingNameId = null;
   showMessage("تم إرجاع " + name.text + " إلى قائمة الأبطال ⬆️");
   save();
   render();
 }
 
 function moveMovingToColumn(columnIndex) {
-  const nameId = state.movingNameId;
-  const name = state.names.find(n => n.id === nameId);
+  const cls = getCurrentClass();
+  if (!cls || !cls.movingNameId) return;
+
+  const nameId = cls.movingNameId;
+  const name = cls.names.find(n => n.id === nameId);
 
   const oldLocation = findNameLocation(nameId);
 
@@ -863,18 +1058,23 @@ function moveMovingToColumn(columnIndex) {
     return;
   }
 
-  if (oldLocation) state.columns[oldLocation.c][oldLocation.r] = null;
+  if (oldLocation) cls.columns[oldLocation.c][oldLocation.r] = null;
 
-  let emptyIndex = state.columns[columnIndex].findIndex(slot => slot === null);
+  let emptyIndex = cls.columns[columnIndex].findIndex(slot => slot === null);
 
   if (emptyIndex === -1) {
-    state.extraSlots++;
-    ensureColumns();
-    emptyIndex = state.columns[columnIndex].findIndex(slot => slot === null);
+    cls.extraSlots++;
+    const count = 2 + cls.extraSlots;
+
+    cls.columns.forEach(col => {
+      while (col.length < count) col.push(null);
+    });
+
+    emptyIndex = cls.columns[columnIndex].findIndex(slot => slot === null);
   }
 
-  state.columns[columnIndex][emptyIndex] = { nameId, struck: false };
-  state.movingNameId = null;
+  cls.columns[columnIndex][emptyIndex] = { nameId, struck: false };
+  cls.movingNameId = null;
 
   showMessage("تم نقل " + name.text + " إلى العمود " + (columnIndex + 1) + " 🎉");
   save();
@@ -882,28 +1082,31 @@ function moveMovingToColumn(columnIndex) {
 }
 
 function moveMovingToSlot(columnIndex, rowIndex, isTempSlot) {
-  const nameId = state.movingNameId;
-  const name = state.names.find(n => n.id === nameId);
+  const cls = getCurrentClass();
+  if (!cls || !cls.movingNameId) return;
+
+  const nameId = cls.movingNameId;
+  const name = cls.names.find(n => n.id === nameId);
 
   const oldLocation = findNameLocation(nameId);
-  const targetSlot = isTempSlot ? null : state.columns[columnIndex][rowIndex];
+  const targetSlot = isTempSlot ? null : cls.columns[columnIndex][rowIndex];
 
   if (oldLocation && oldLocation.c === columnIndex && oldLocation.r === rowIndex) {
-    state.movingNameId = null;
+    cls.movingNameId = null;
     showMessage("تم إلغاء نقل " + name.text);
     save();
     render();
     return;
   }
 
-  if (oldLocation) state.columns[oldLocation.c][oldLocation.r] = null;
+  if (oldLocation) cls.columns[oldLocation.c][oldLocation.r] = null;
 
   if (targetSlot) {
     const otherNameId = targetSlot.nameId;
     const otherStruck = targetSlot.struck;
 
     if (oldLocation) {
-      state.columns[oldLocation.c][oldLocation.r] = {
+      cls.columns[oldLocation.c][oldLocation.r] = {
         nameId: otherNameId,
         struck: otherStruck
       };
@@ -911,12 +1114,16 @@ function moveMovingToSlot(columnIndex, rowIndex, isTempSlot) {
   }
 
   if (isTempSlot) {
-    state.extraSlots++;
-    ensureColumns();
+    cls.extraSlots++;
+    const count = 2 + cls.extraSlots;
+
+    cls.columns.forEach(col => {
+      while (col.length < count) col.push(null);
+    });
   }
 
-  state.columns[columnIndex][rowIndex] = { nameId, struck: false };
-  state.movingNameId = null;
+  cls.columns[columnIndex][rowIndex] = { nameId, struck: false };
+  cls.movingNameId = null;
 
   showMessage("تم نقل " + name.text + " بنجاح 🎉");
   save();
@@ -924,15 +1131,18 @@ function moveMovingToSlot(columnIndex, rowIndex, isTempSlot) {
 }
 
 function cycleSlotState(columnIndex, slotIndex, slotElement) {
-  const slot = state.columns[columnIndex][slotIndex];
+  const cls = getCurrentClass();
+  if (!cls) return;
+
+  const slot = cls.columns[columnIndex][slotIndex];
   if (!slot) return;
 
-  const name = state.names.find(n => n.id === slot.nameId);
+  const name = cls.names.find(n => n.id === slot.nameId);
   if (!name) return;
 
-  if (state.movingNameId) {
-    if (state.movingNameId === name.id) {
-      state.movingNameId = null;
+  if (cls.movingNameId) {
+    if (cls.movingNameId === name.id) {
+      cls.movingNameId = null;
       showMessage("تم إلغاء وضع النقل.");
       save();
       render();
@@ -940,7 +1150,7 @@ function cycleSlotState(columnIndex, slotIndex, slotElement) {
     return;
   }
 
-  if (state.selectedNameIds.length > 0) {
+  if (cls.selectedNameIds.length > 0) {
     placeSingleSelected(columnIndex, slotIndex, false);
     return;
   }
@@ -976,37 +1186,55 @@ function cycleSlotState(columnIndex, slotIndex, slotElement) {
   render();
 }
 
-function getNameText(nameId) {
-  const name = state.names.find(n => n.id === nameId);
-  return name ? name.text : "";
+function getDisplayName(cls, nameId) {
+  const name = cls.names.find(n => n.id === nameId);
+  if (!name) return "";
+
+  const parts = name.text.split(/\s+/).filter(p => p.length > 0);
+  if (parts.length === 0) return "";
+
+  const firstName = parts[0];
+
+  const sameFirst = cls.names.filter(n => {
+    const p = n.text.split(/\s+/).filter(p => p.length > 0);
+    return p.length > 0 && p[0] === firstName;
+  });
+
+  if (sameFirst.length <= 1) return firstName;
+
+  if (parts.length >= 2) {
+    const twoParts = parts[0] + " " + parts[1];
+
+    const sameTwo = sameFirst.filter(n => {
+      const p = n.text.split(/\s+/).filter(p => p.length > 0);
+      return p.length >= 2 && (p[0] + " " + p[1]) === twoParts;
+    });
+
+    if (sameTwo.length <= 1) return twoParts;
+
+    if (parts.length >= 3) {
+      return parts[0] + " " + parts[1] + " " + parts[2];
+    }
+  }
+
+  return firstName;
 }
 
 function newDay() {
-  state.names.forEach(name => name.hasStar = true);
+  const cls = getCurrentClass();
+  if (!cls) return;
 
-  state.columns.forEach(column => {
+  cls.names.forEach(name => name.hasStar = true);
+
+  cls.columns.forEach(column => {
     column.forEach(slot => {
       if (slot) slot.struck = false;
     });
   });
 
-  state.selectedNameIds = [];
-  state.movingNameId = null;
-  showMessage("بداية يوم جديد! عادت النجوم 🌟");
-  save();
-  render();
-}
-
-function clearAll() {
-  if (!confirm("هل تريد إرجاع كل الأسماء إلى الأعلى وفراغ الأعمدة؟")) return;
-
-  state.columns.forEach(column => {
-    for (let r = 0; r < column.length; r++) column[r] = null;
-  });
-
-  state.selectedNameIds = [];
-  state.movingNameId = null;
-  showMessage("تم إرجاع كل الأبطال إلى الأعلى 🧹");
+  cls.selectedNameIds = [];
+  cls.movingNameId = null;
+  showMessage("بداية يوم جديد في فصل: " + cls.name + " 🌟");
   save();
   render();
 }
@@ -1030,7 +1258,10 @@ function attachSlotEvents(slot, columnIndex, rowIndex, isTempSlot, nameId) {
     if (!pressed) return;
     pressed = false;
 
-    if (state.movingNameId) {
+    const cls = getCurrentClass();
+    if (!cls) return;
+
+    if (cls.movingNameId) {
       if (nameId) {
         moveMovingToSlot(columnIndex, rowIndex, false);
       } else {
@@ -1039,11 +1270,9 @@ function attachSlotEvents(slot, columnIndex, rowIndex, isTempSlot, nameId) {
       return;
     }
 
-    if (state.selectedNameIds.length > 0) {
-      if (!nameId) {
-        if (state.selectedNameIds.length === 1) {
-          placeSingleSelected(columnIndex, rowIndex, isTempSlot);
-        }
+    if (cls.selectedNameIds.length > 0) {
+      if (!nameId && cls.selectedNameIds.length === 1) {
+        placeSingleSelected(columnIndex, rowIndex, isTempSlot);
       }
       return;
     }
@@ -1066,34 +1295,115 @@ function attachSlotEvents(slot, columnIndex, rowIndex, isTempSlot, nameId) {
 function render() {
   updateScreens();
 
-  if (!state.setupDone) return;
+  const cls = getCurrentClass();
+  if (!cls) return;
 
-  deleteStudentBtn.classList.toggle("active", state.deleteStudentMode);
-  returnBtn.classList.toggle("show", state.movingNameId !== null);
+  deleteStudentBtn.classList.toggle("active", cls.deleteStudentMode);
+  returnBtn.classList.toggle("show", cls.movingNameId !== null);
 
-  ensureColumns();
+  // شريط الفصول
+  groupsList.innerHTML = "";
 
+  state.classes.forEach(c => {
+    const chip = document.createElement("div");
+    chip.className = "group-chip" +
+      (c.id === state.currentClassId ? " active" : "") +
+      (c.id === state.reorderClassId ? " reorder-mode" : "");
+
+    chip.textContent = c.name;
+
+    if (state.classActionsId === c.id) {
+      const actions = document.createElement("div");
+      actions.className = "chip-actions";
+
+      const editBtn = document.createElement("div");
+      editBtn.className = "chip-btn";
+      editBtn.textContent = "✏️";
+      editBtn.title = "تعديل اسم الفصل";
+      editBtn.addEventListener("click", (event) => renameClass(c.id, event));
+
+      const swapBtn = document.createElement("div");
+      swapBtn.className = "chip-btn";
+      swapBtn.textContent = "⇄";
+      swapBtn.title = "تبديل مكان الفصل";
+      swapBtn.addEventListener("click", (event) => startReorder(c.id, event));
+
+      const deleteBtn = document.createElement("div");
+      deleteBtn.className = "chip-btn delete";
+      deleteBtn.textContent = "🗑️";
+      deleteBtn.title = "حذف الفصل";
+      deleteBtn.addEventListener("click", (event) => deleteClass(c.id, event));
+
+      actions.appendChild(editBtn);
+      actions.appendChild(swapBtn);
+      actions.appendChild(deleteBtn);
+      chip.appendChild(actions);
+    }
+
+    let pressTimer = null;
+    let longPressed = false;
+
+    chip.addEventListener("pointerdown", function () {
+      longPressed = false;
+
+      pressTimer = setTimeout(() => {
+        longPressed = true;
+        startClassActions(c.id);
+      }, 500);
+    });
+
+    chip.addEventListener("pointerup", function () {
+      clearTimeout(pressTimer);
+    });
+
+    chip.addEventListener("pointercancel", function () {
+      clearTimeout(pressTimer);
+      longPressed = false;
+    });
+
+    chip.addEventListener("click", function (event) {
+      event.stopPropagation();
+
+      if (longPressed) {
+        longPressed = false;
+        return;
+      }
+
+      state.classActionsId = null;
+      switchClass(c.id);
+    });
+
+    groupsList.appendChild(chip);
+  });
+
+  const count = 2 + cls.extraSlots;
+  cls.columns.forEach(column => {
+    while (column.length < count) column.push(null);
+  });
+
+  // الأسماء المتاحة
   namesList.innerHTML = "";
 
-  const availableNames = state.names.filter(name => findNameLocation(name.id) === null);
+  const availableNames = cls.names.filter(name => findNameLocation(name.id) === null);
 
   if (availableNames.length === 0) {
     const empty = document.createElement("div");
     empty.style.color = "#90a4ae";
     empty.style.fontWeight = "bold";
-    empty.textContent = "كل الأبطال في الأعمدة الآن 🎉";
+    empty.textContent = "أضف أسماء الطلاب من الأعلى ➕";
     namesList.appendChild(empty);
   }
 
   availableNames.forEach(name => {
-    const order = state.selectedNameIds.indexOf(name.id);
+    const order = cls.selectedNameIds.indexOf(name.id);
+    const displayName = getDisplayName(cls, name.id);
 
     const chip = document.createElement("div");
     chip.className = "name-chip" +
       (order !== -1 ? " selected" : "") +
-      (state.deleteStudentMode ? " delete-mode" : "");
+      (cls.deleteStudentMode ? " delete-mode" : "");
 
-    chip.textContent = name.text;
+    chip.textContent = displayName;
 
     if (order !== -1) {
       const badge = document.createElement("div");
@@ -1102,7 +1412,7 @@ function render() {
       chip.appendChild(badge);
     }
 
-    if (state.deleteStudentMode) {
+    if (cls.deleteStudentMode) {
       const x = document.createElement("div");
       x.className = "delete-x";
       x.textContent = "✕";
@@ -1114,23 +1424,24 @@ function render() {
     namesList.appendChild(chip);
   });
 
+  // الأعمدة
   board.innerHTML = "";
 
-  const lastColumnIndex = state.columns.length - 1;
-  const hasSelection = state.selectedNameIds.length > 0;
-  const permanentCount = getPermanentSlotCount();
+  const lastColumnIndex = cls.columns.length - 1;
+  const hasSelection = cls.selectedNameIds.length > 0;
+  const permanentCount = 2 + cls.extraSlots;
   const totalSlots = hasSelection ? permanentCount + 1 : permanentCount;
 
-  state.columns.forEach((column, c) => {
+  cls.columns.forEach((column, c) => {
     const columnDiv = document.createElement("div");
     columnDiv.className = "column";
     columnDiv.dataset.column = c;
 
     const title = document.createElement("div");
     title.className = "column-title" +
-      ((hasSelection || state.movingNameId) ? " active-mode" : "");
+      ((hasSelection || cls.movingNameId) ? " active-mode" : "");
 
-    title.textContent = state.movingNameId
+    title.textContent = cls.movingNameId
       ? "عمود " + (c + 1) + " 👆"
       : "عمود " + (c + 1);
 
@@ -1162,21 +1473,22 @@ function render() {
       slot.dataset.row = r;
 
       if (slotData) {
-        const name = state.names.find(n => n.id === slotData.nameId);
+        const name = cls.names.find(n => n.id === slotData.nameId);
+        const displayName = getDisplayName(cls, name.id);
 
         slot.classList.add("filled", "selectable");
 
-        if (state.movingNameId === slotData.nameId) {
+        if (cls.movingNameId === slotData.nameId) {
           slot.classList.add("moving");
-          slot.innerHTML = name.text + '<span class="move-hint">👆 انقلني</span>';
+          slot.innerHTML = displayName + '<span class="move-hint">👆 انقلني</span>';
         } else if (slotData.struck) {
           slot.classList.add("struck");
-          slot.innerHTML = name.text + '<span class="error-x">❌</span>';
+          slot.innerHTML = displayName + '<span class="error-x">❌</span>';
         } else if (name.hasStar) {
-          slot.innerHTML = name.text + '<span class="star">⭐</span>';
+          slot.innerHTML = displayName + '<span class="star">⭐</span>';
         } else {
           slot.classList.add("no-star");
-          slot.textContent = name.text;
+          slot.textContent = displayName;
         }
 
         attachSlotEvents(slot, c, r, false, slotData.nameId);
@@ -1199,6 +1511,23 @@ function render() {
 nameInput.addEventListener("keydown", function (event) {
   if (event.key === "Enter") addName();
 });
+
+let startHandled = false;
+
+function handleStart(event) {
+  if (startHandled) return;
+  startHandled = true;
+
+  event.preventDefault();
+  startFromSetup();
+
+  setTimeout(() => {
+    startHandled = false;
+  }, 300);
+}
+
+startBtn.addEventListener("touchend", handleStart, { passive: false });
+startBtn.addEventListener("click", handleStart);
 
 window.addEventListener("load", load);
 </script>
